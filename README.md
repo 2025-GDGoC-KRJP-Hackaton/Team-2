@@ -1,6 +1,6 @@
 # Remember Me
 
-<img src="/Users/1kl1/Downloads/AppIcons (1)/appstore.png" alt="appstore" style="zoom:33%;" />
+<img src="https://github.com/2025-GDGoC-KRJP-Hackaton/Team-2/blob/main/icon.png?raw=true" alt="appstore" style="zoom:33%;" />
 
 A comprehensive memory preservation and recall application designed to help users store, organize, and retrieve personal memories.
 
