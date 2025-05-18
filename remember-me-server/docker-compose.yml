@@ -1,0 +1,43 @@
+
+services:
+  api:
+    build: .
+    ports:
+      - "80:80"
+    volumes:
+      - .:/app
+    command: uvicorn app.main:app --host 0.0.0.0 --port 80 --reload
+    environment:
+      - TZ=Asia/Tokyo
+    depends_on:
+      - postgres
+      - chroma
+
+  postgres:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=dbname
+      - TZ=Asia/Tokyo
+    command: postgres -c log_timezone=Asia/Tokyo -c timezone=Asia/Tokyo
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  chroma:
+    image: ghcr.io/chroma-core/chroma:latest
+    volumes:
+      - chroma-data:/chroma/chroma
+    ports:
+      - "8000:8000"
+    environment:
+      - ALLOW_RESET=True
+      - ANONYMIZED_TELEMETRY=False
+      - PERSIST_DIRECTORY=/chroma/chroma
+
+volumes:
+  postgres_data:
+  chroma-data:
+  
